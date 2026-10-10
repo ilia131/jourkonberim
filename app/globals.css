@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap");
+
+@import "tailwindcss";
+
+ 
+
+body {
+  margin: 0;
+  background: #f7f8fa;
+  color: #172033;
+  font-family: "Vazirmatn", sans-serif;
+  direction: rtl;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+
+@theme {
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-700: #c2410c;
+
+  --shadow-soft: 0 12px 40px rgba(15, 23, 42, 0.07);
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+ 
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+/* Container */
+.container-x {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+/* Card */
+.card {
+  background: white;
+  border: 1px solid #edf0f4;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.035);
+}
