@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -21,6 +22,28 @@ type DetailPageProps = {
     slug: string;
   }>;
 };
+
+// Current tour data comes from local sample fixtures; avoid indexing offers
+// until the frontend is connected to verified, current inventory.
+export async function generateMetadata({ params }: DetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const tour = tours.find((item) => item.slug === slug);
+  if (!tour) return { title: "تور پیدا نشد", robots: { index: false, follow: false } };
+
+  const description = `${tour.title} در ${tour.city}. ${tour.description}`.replace(/\\s+/g, " ").slice(0, 155);
+  return {
+    title: tour.title,
+    description,
+    alternates: { canonical: `/tours/${encodeURIComponent(slug)}` },
+    openGraph: {
+      title: `${tour.title} | جور کن بریم`,
+      description,
+      type: "article",
+      url: `/tours/${encodeURIComponent(slug)}`,
+    },
+    robots: { index: false, follow: true },
+  };
+}
 
 export function generateStaticParams() {
   return tours.map((tour) => ({
